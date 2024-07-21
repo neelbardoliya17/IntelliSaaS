@@ -98,12 +98,29 @@ const logout=asyncHandler(async(req,res)=>
 
 
 //Profile
-
+const userProfile=asyncHandler(async(req,res)=>
+{
+    const id='6698be7fc5f8ffa226fbe32e';
+    const user=await User.findById(id);
+    if(user)
+    {
+        res.status(200).json({
+            status:'success',
+            user,
+        })
+    }
+    else
+    {
+        res.status(404);
+        throw new Error('User not Found');
+    }
+});
 //Check user Authr Status
 
 
 
 module.exports={
     register,
-    login,logout
+    login,logout,
+    userProfile
 };
