@@ -44,7 +44,7 @@ const userSchema=new mongoose.Schema({
     monthlyRequestCount:
     {
         type:Number,
-        default:0,
+        default:100,
     },
     nextBilingDate:Date,
     payments:[
@@ -62,9 +62,14 @@ const userSchema=new mongoose.Schema({
 },
 {
     timestamps:true,
+    toJSON:{virtuals:true},
+    toObject:{virtuals:true}
 }
 );
-
+//add virtual property
+userSchema.virtual('isTrialActive').get(function(){
+    return this.trialActive && new Date() < this.trialExpires;
+})
 //Coimpiker to form the model
 const User=mongoose.model("User",userSchema);
 

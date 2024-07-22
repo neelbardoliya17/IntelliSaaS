@@ -19,6 +19,6 @@ const historySchema=new mongoose.Schema({
 );
 
 //Coimpiker to form the model
-const ContentHist=mongoose.model("Payment",historySchema);
+const ContentHist=mongoose.model("ContentHistory",historySchema);
 
 module.exports=ContentHist;
