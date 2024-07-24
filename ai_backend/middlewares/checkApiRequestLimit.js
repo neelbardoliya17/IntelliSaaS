@@ -15,7 +15,7 @@ const checkApiRequestLimit=asyncHandler(async(req,res,next)=>
     }
     let requestLimit=0;
     //check if the user is on trial period
-    if(user?.isTrialActive)
+    if(user?.trialActive)
     {
         requestLimit=user?.monthlyRequestCount;
     }
