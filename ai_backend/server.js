@@ -33,6 +33,26 @@ cron.schedule("0 0 * * * *",async ()=>//star represent:second,minute,hour,day of
     }
 })
 
+//Cron for the free plan : runs at the end of every month
+cron.schedule("0 0 1 * * *",async ()=>//star represent:second,minute,hour,day of month,month,day of the week
+{
+    // console.log("This task runs every second");
+    try {
+        //get the current date
+        const today=new Date();
+        const updateUser=await User.updateMany({
+            subscriptionPlan:'Free',
+            trialExpires:{$lt:today}
+        },{
+            monthlyRequestCount:0,
+        })
+        // console.log(updateUser);
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+
 
 
 //Cron for the paid ones
