@@ -2,8 +2,9 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
-import {useMutation} from "@tanstack/react-query";
 import { registerAPI } from "../../apis/usersAPI";
+import {useMutation} from "@tanstack/react-query";
+import StatusMessage from "../Alert/StatusMessage";
 // Validation schema
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -31,7 +32,7 @@ const Registration = () => {
       console.log("Form values", values);
       mutation.mutate(values);
       // Simulate successful registration
-      navigate("/login"); // Redirect user to login page
+      // navigate("/login"); // Redirect user to login page
     },
   });
   console.log(mutation.isSuccess);
@@ -50,6 +51,14 @@ const Registration = () => {
           Create an account to get free access for 3 days. No credit card
           required.
         </p>
+        {/* display loading */}
+        {mutation.isPending && (<StatusMessage type='loading' message="Loading....." />)}
+
+      {/* display loading */}
+        {mutation.isError && (<StatusMessage type='error' message={mutation?.error?.response?.data?.message} />)}
+
+        {/* display success */}
+        {mutation.isSuccess && (<StatusMessage type='success' message="Registration Success" />)}
 
         <form onSubmit={formik.handleSubmit} className="space-y-6">
           {/* Username input field */}
