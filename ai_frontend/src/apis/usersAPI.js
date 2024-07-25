@@ -13,3 +13,18 @@ export const registerAPI=async(userData)=>
     });
     return reposnse?.data;
 }
+
+
+//Login
+
+export const loginAPI=async(userData)=>
+    {
+        const reposnse=await axios.post('http://localhost:8090/api/v1/users/login',{
+            email:userData?.email,
+            password:userData?.password,
+        },
+        {
+            withCredentials:true,
+        });
+        return reposnse?.data;
+    }
