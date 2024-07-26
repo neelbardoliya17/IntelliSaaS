@@ -1,6 +1,9 @@
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Registration from './components/Users/Register'
 import Login from './components/Users/Login'
+import Dashboard from './components/Users/Dashboard'
+import PrivateNavbar from './components/Navbar/PrivateNavbar'
+import PublicNavbar from './components/Navbar/PublicNavbar'
 //dummy component
 // const Home=()=>
 // {
@@ -10,9 +13,12 @@ export default function App() {
   return (
     <>
     <BrowserRouter>
+    {/* Navbar */}
+    <PrivateNavbar/>
     <Routes>
       <Route path="/register" element={<Registration/>} />
       <Route path="/login" element={<Login/>} />
+      <Route path="/dashboard" element={<Dashboard/>} />
     </Routes>
     </BrowserRouter>
     </>
