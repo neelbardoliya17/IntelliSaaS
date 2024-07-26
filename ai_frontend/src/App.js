@@ -4,6 +4,7 @@ import Login from './components/Users/Login'
 import Dashboard from './components/Users/Dashboard'
 import PrivateNavbar from './components/Navbar/PrivateNavbar'
 import PublicNavbar from './components/Navbar/PublicNavbar'
+import Home from './components/Home/Home'
 //dummy component
 // const Home=()=>
 // {
@@ -19,6 +20,7 @@ export default function App() {
       <Route path="/register" element={<Registration/>} />
       <Route path="/login" element={<Login/>} />
       <Route path="/dashboard" element={<Dashboard/>} />
+      <Route path="/" element={<Home/>} />
     </Routes>
     </BrowserRouter>
     </>

@@ -28,3 +28,13 @@ export const loginAPI=async(userData)=>
         });
         return reposnse?.data;
     }
+
+//check authentication
+export const checkUserAuthStatusAPI=async(userData)=>
+    {
+        const reposnse=await axios.get('http://localhost:8090/api/v1/users/auth/check',
+        {
+            withCredentials:true,
+        });
+        return reposnse?.data;
+    }
