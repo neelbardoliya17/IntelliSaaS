@@ -30,9 +30,20 @@ export const loginAPI=async(userData)=>
     }
 
 //check authentication
-export const checkUserAuthStatusAPI=async(userData)=>
+export const checkUserAuthStatusAPI=async()=>
     {
         const reposnse=await axios.get('http://localhost:8090/api/v1/users/auth/check',
+        {
+            withCredentials:true,
+        });
+        return reposnse?.data;
+    }
+
+
+//logout auth
+export const logoutAPI=async()=>
+    {
+        const reposnse=await axios.post('http://localhost:8090/api/v1/users/logout',{},
         {
             withCredentials:true,
         });
