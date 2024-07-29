@@ -18,8 +18,17 @@ const validationSchema = Yup.object({
 const Login = () => {
   //custome auth hook
   const {isAuthenticated,login}=useAuth();
-  console.log(isAuthenticated);
   const navigate = useNavigate();
+
+  useEffect(()=>
+  {
+    if(isAuthenticated)
+    {
+      navigate("/dashboard");
+    }
+  },[isAuthenticated]);
+
+
 
   const mutation = useMutation({ mutationFn: loginAPI });
   // Formik setup for form handling
