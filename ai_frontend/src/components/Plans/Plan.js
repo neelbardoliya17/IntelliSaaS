@@ -61,7 +61,7 @@ export default function Plans() {
     else
     {
       // make an actual request to stripe
-      
+      navigate(`/checkout/${plan?.id}?amount=${plan?.amount}`)
     }
   }
   return (
