@@ -11,6 +11,7 @@ import BlogPostAIAssistant from "./components/ContentGeneration/ContentGeneratio
 import Plans from "./components/Plans/Plan";
 import FreePlanSignup from "./components/StripePayment/FreePlanSignup";
 import CheckOutForm from "./components/StripePayment/CheckoutForm";
+import PaymentSuccess from "./components/StripePayment/PaymentSuccess";
 //dummy component
 // const Home=()=>
 // {
@@ -47,6 +48,7 @@ export default function App() {
           <Route path="/plans" element={<Plans />} />
           <Route path="/free-plan" element={<FreePlanSignup />} />
           <Route path="/checkout/:plan" element={<CheckOutForm />} />
+          <Route path="/success" element={<PaymentSuccess />} />
         </Routes>
       </BrowserRouter>
     </>

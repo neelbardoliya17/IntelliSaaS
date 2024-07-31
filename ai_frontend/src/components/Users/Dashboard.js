@@ -117,15 +117,15 @@ const Dashboard = () => {
             <h2 className="text-2xl font-bold text-gray-800 mb-5">
               Payment History
             </h2>
-           {data?.user?.payements?.length > 0 ?  <ul className="divide-y divide-gray-200">
+           {data?.user?.payments?.length > 0 ?  <ul className="divide-y divide-gray-200">
               {/* Example History Item */}
-              {data?.user?.payements.map((payment)=>{
+              {data?.user?.payments.map((payment)=>{
                 return (
                   <li className="py-4 hover:bg-gray-50 transition duration-150 ease-in-out">
                 <div className="flex flex-col sm:flex-row justify-between">
                   <div className="mb-2 sm:mb-0">
                     <p className="text-sm font-medium text-indigo-600">
-                      {}
+                      {payment?.subscriptionPlan}
                     </p>
                     <p className="text-xs text-gray-500">{new Date(payment?.createdAt).toDateString()}</p>
                   </div>
