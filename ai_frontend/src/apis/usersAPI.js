@@ -60,3 +60,10 @@ export const logoutAPI=async()=>
             });
             return reposnse?.data;
         }
+    
+        export const deleteContentHistoryAPI = async (contentId) => {
+            const response = await axios.delete(`http://localhost:8090/api/v1/users/content-history-delete/${contentId}`, {
+                withCredentials: true, 
+            });
+            return response?.data;
+        };

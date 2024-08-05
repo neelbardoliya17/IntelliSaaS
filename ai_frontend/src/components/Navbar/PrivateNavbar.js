@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { logoutAPI } from "../../apis/usersAPI";
 import { useAuth } from "../../AuthContext/AuthContext";
+import logo from "../../assets/logo1.png";
 
 const user = {
   name: "Tom Cook",
@@ -16,6 +17,8 @@ const user = {
 const navigation = [
   { name: "Dashboard", href: "/dashboard", current: true },
   { name: "Pricing", href: "/plans", current: true },
+  { name: "History", href: "/history", current: true },
+  { name: "Contact Us", href: "/contact", current: true },
 ];
 const userNavigation = [{ name: "Sign out", href: "#" }];
 
@@ -60,10 +63,18 @@ export default function PrivateNavbar() {
                   </Disclosure.Button>
                 </div>
                 <div className="flex flex-shrink-0 items-center">
+                <div className="absolute top-0 left-6">
+            <img
+              src={logo}
+              alt="Logo"
+              className="h-20 w-auto" // Adjusted size for better visibility
+              style={{ borderRadius: '8px' }} // Optional: Add border radius for a smoother look
+            />
+          </div>
                   {/* logo */}
-                  <Link to="/" className="text-white">
+                  {/* <Link to="/" className="text-white">
                     <FaCreativeCommonsShare className="h-10 w-10" />
-                  </Link>
+                  </Link> */}
                 </div>
                 <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
                   {navigation.map((item) => (

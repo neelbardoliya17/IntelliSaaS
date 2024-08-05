@@ -6,6 +6,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import StatusMessage from "../Alert/StatusMessage";
 import { getUserProfileAPI } from "../../apis/usersAPI";
 import { generatedContentAPI } from "../../apis/chatGPT/chatGPT";
+import { saveAs } from "file-saver"; // Import file-saver
 
 const BlogPostAIAssistant = () => {
   const [generatedContent, setGeneratedContent] = useState("");
@@ -58,6 +59,11 @@ const BlogPostAIAssistant = () => {
     window.open(whatsappUrl, "_blank");
   };
 
+  const handleSave = () => {
+    const blob = new Blob([generatedContent], { type: "text/plain;charset=utf-8" });
+    saveAs(blob, "generated-content.txt");
+  };
+
   if (isLoading) {
     return <StatusMessage type="Loading" message="Loading Please wait...." />;
   }
@@ -69,7 +75,7 @@ const BlogPostAIAssistant = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-900 flex justify-center items-center p-6">
       <div className="bg-white rounded-xl shadow-xl overflow-hidden max-w-2xl w-full p-6">
         <h2 className="text-3xl font-extrabold text-gray-800 mb-6 text-center">
-          AI Blog Post Generator
+          AI Content Generator
         </h2>
         {/* Loading */}
         {mutation.isLoading && (
@@ -172,7 +178,7 @@ const BlogPostAIAssistant = () => {
             <h3 className="text-lg font-semibold text-gray-800 mb-2">
               Generated Content:
             </h3>
-            <p className="text-gray-600">{mutation.data}</p>
+            <p className="text-gray-600">{generatedContent}</p>
             <div className="mt-4">
               <button
                 onClick={handleCopy}
@@ -182,9 +188,15 @@ const BlogPostAIAssistant = () => {
               </button>
               <button
                 onClick={handleShare}
-                className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="mr-2 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Share
+              </button>
+              <button
+                onClick={handleSave}
+                className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-500 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              >
+                Save as text File
               </button>
             </div>
           </div>

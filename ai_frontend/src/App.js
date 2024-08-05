@@ -12,6 +12,10 @@ import Plans from "./components/Plans/Plan";
 import FreePlanSignup from "./components/StripePayment/FreePlanSignup";
 import CheckOutForm from "./components/StripePayment/CheckoutForm";
 import PaymentSuccess from "./components/StripePayment/PaymentSuccess";
+import ContentGenerationHistory from "./components/ContentGeneration/ContentHistory";
+import AppFeatures from "./components/Features/Features";
+import AboutUs from "./components/About/About";
+import ContactUs from "./components/Contact/Contact_us";
 //dummy component
 // const Home=()=>
 // {
@@ -36,7 +40,7 @@ export default function App() {
               </AuthRoute>
             }
           />
-           <Route
+          <Route
             path="/generate-content"
             element={
               <AuthRoute>
@@ -44,11 +48,34 @@ export default function App() {
               </AuthRoute>
             }
           />
+          <Route path="/history" element={<ContentGenerationHistory />} />
           <Route path="/" element={<Home />} />
           <Route path="/plans" element={<Plans />} />
-          <Route path="/free-plan" element={<FreePlanSignup />} />
-          <Route path="/checkout/:plan" element={<CheckOutForm />} />
-          <Route path="/success" element={<PaymentSuccess />} />
+          <Route
+            path="/free-plan"
+            element={
+              <AuthRoute>
+                <FreePlanSignup />{" "}
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/checkout/:plan"
+            element={
+              <AuthRoute>
+                <CheckOutForm />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/success"
+            element={
+                <PaymentSuccess />
+            }
+          />
+          <Route path="/features" element={<AppFeatures />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/contact" element={<ContactUs />} />
         </Routes>
       </BrowserRouter>
     </>
